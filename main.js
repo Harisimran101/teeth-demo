@@ -59,7 +59,7 @@ const size = {
 
 
 const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 60, size.width / size.height, 0.1, 3000 );
+			const camera = new THREE.PerspectiveCamera( 70, size.width / size.height, 0.1, 3000 );
 
 			const renderer = new THREE.WebGLRenderer({
         antialias: true,
