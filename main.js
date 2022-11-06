@@ -5,7 +5,7 @@ import { LoadingManager } from 'https://cdn.skypack.dev/three@0.136/src/loaders/
 import { DRACOLoader } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/loaders/DRACOLoader.js';
 
 
-fetch('https://bclear-001-site1.ctempurl.com/BClearApi/GetTreatmentPlanModel')
+fetch('http://bclear-001-site1.ctempurl.com/BClearApi/GetTreatmentPlanModel')
   .then((response) => response.json())
   .then((data) => dataloaded(data) );
 
