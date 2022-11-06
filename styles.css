@@ -19,6 +19,7 @@
      width:100vw !important;
      height: 80vh !important;
      transform: translate(-50%,-50%);
+     cursor: grab;
 }
 
 .controls-container {
@@ -148,3 +149,5 @@
       border-radius: 7px;
       cursor: pointer;
     }
+
+   
