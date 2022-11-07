@@ -3,6 +3,7 @@ import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/
 import { GLTFLoader  } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/loaders/GLTFLoader.js';
 import { LoadingManager } from 'https://cdn.skypack.dev/three@0.136/src/loaders/LoadingManager.js';
 import { DRACOLoader } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/loaders/DRACOLoader.js';
+import { RGBELoader } from 'https://cdn.skypack.dev/three@0.136/examples/jsm/loaders/RGBELoader.js';
 
 
 fetch('http://bclear-001-site1.ctempurl.com/BClearApi/GetTreatmentPlanModel')
@@ -73,11 +74,11 @@ const scene = new THREE.Scene();
 		    renderer.toneMappingExposure = 0.85;
 			renderer.outputEncoding = THREE.sRGBEncoding;
             renderer.setClearColor( 0xff0000, 0.0 )
-            const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.9 );
+            const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
 
 scene.add( directionalLight );
 
-const light = new THREE.AmbientLight( 0x404040,2.6 ); // soft white light
+const light = new THREE.AmbientLight( 0x404040,1.3 ); // soft white light
 scene.add( light );
 
 
@@ -141,6 +142,12 @@ manager.onError = function ( url ) {
 
 };
 
+new RGBELoader().load('Environment.hdr',function(texture){
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+       scene.environment = texture;
+    })
+
+
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath( 'draco/' );
 
@@ -151,7 +158,7 @@ loader.setDRACOLoader(dracoLoader)
 models[0].forEach((modeladdress,i) =>{
     loader.load(modeladdress, (gltf) =>{
         
-        const mesh = new THREE.Mesh(gltf.scene.children[0].geometry, objmaterial)
+        const mesh = gltf.scene.children[0]
        // geometry.computeVertexNormals()
         
          mesh.name = modeladdress 
@@ -180,7 +187,7 @@ models[0].forEach((modeladdress,i) =>{
 models[1].forEach((modeladdress,i) =>{
     loader.load(modeladdress, (gltf) =>{
         
-        const mesh = new THREE.Mesh(gltf.scene.children[0].geometry, objmaterial)
+        const mesh = gltf.scene.children[0]
        // geometry.computeVertexNormals()
         
          mesh.name = modeladdress 
